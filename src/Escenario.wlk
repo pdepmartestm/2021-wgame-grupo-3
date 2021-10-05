@@ -1,6 +1,45 @@
+import wollok.game.*
+import player.*
+import juego.*
+
 class Escenario {
-	var property objetos = new List()
-	var property imagen
+	var property objets = new List()
+	var property background
 	var property codigo
 		
 }
+
+class Element {
+	var property image
+	var property position
+	
+	method position(){
+		return position
+	}
+	
+	method image(){
+		return image
+	}
+	
+	method collision(){
+	}
+}
+
+class PickUp inherits Element {
+	
+	override method collision(){
+		player.pickUp(self)
+	}
+}
+
+object door inherits Element(image = "closedDoor.png",position = game.at(12,8)){
+	
+	override method collision(){
+		image = "openDoor.png"
+	}
+	
+}
+
+const key = new PickUp(image = "key.png",position = game.at(05,05)) //No estoy muy seguro como implementarlo
+	
+	

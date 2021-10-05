@@ -1,8 +1,9 @@
 import wollok.game.*
 import juego.*
 
-object jugador {
-
+object player {
+	
+	const inventory = []
 	var position = game.center()
 	var facing = "down"
 	
@@ -16,19 +17,19 @@ object jugador {
 	
 	
 	//Metodos de movimiento
-	method moverseDerecha(){
+	method moveRight(){
 		facing = "right"
 		position = juego.queNoSeSalga(position.right(1))
 	}
-	method moverseIzquierda(){
+	method moveLeft(){
 		facing = "left"
 		position = juego.queNoSeSalga(position.left(1))
 	}
-	method moverseArriba(){
+	method moveUp(){
 		facing = "up"
 		position = juego.queNoSeSalga(position.up(1))
 	}
-		method moverseAbajo(){
+		method moveDown(){
 		facing = "down"
 		position = juego.queNoSeSalga(position.down(1))
 	}
@@ -40,4 +41,8 @@ object jugador {
 	method decir(msg){
 		game.say(self, msg)
 	}
+	method pickUp(thing){
+		inventory.Add(thing)
+	}
+	
 }
