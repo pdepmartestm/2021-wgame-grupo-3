@@ -32,10 +32,10 @@ class PickUp inherits Element {
 	}
 }
 
-object door inherits Element(image = "closedDoor.png",position = game.at(12,8)){
+object door inherits Element(image = "closedDoor2.png",position = game.at(8,10)){
 	
 	override method collision(){
-		image = "openDoor.png"
+		image = "openDoor2.png"
 	}
 	
 }
