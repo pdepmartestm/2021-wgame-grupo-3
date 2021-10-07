@@ -9,6 +9,8 @@ class Escenario {
 		
 }
 
+
+
 class Element {
 	var property image
 	var property position
@@ -29,17 +31,26 @@ class PickUp inherits Element {
 	
 	override method collision(){
 		player.pickUp(self)
+		game.removeVisual(self)
 	}
 }
 
-object door inherits Element(image = "closedDoor2.png",position = game.at(8,10)){
+
+object door inherits Element(image = "closedDoor2.png",position = game.at(8,9)){
+	
+	//Tener en cuenta que la verdadera posicion de la puerta 
+	//es una posicion mas abajo de la imgagen
 	
 	override method collision(){
-		image = "openDoor2.png"
+		if(player.have(key)){
+			//desbloquear siguiente nivel
+			
+			image = "openDoor2.png"
+		}
 	}
 	
 }
 
-const key = new PickUp(image = "key.png",position = game.at(05,05)) //No estoy muy seguro como implementarlo
+
 	
-	
+

@@ -5,10 +5,15 @@ object player {
 	
 	const inventory = []
 	var position = game.center()
+	var lastPosition = game.center()
 	var facing = "down"
 	
 	method position() {
 		return position
+	}
+	
+	method lastPosition(){
+		return lastPosition
 	}
 
 	method image() {
@@ -19,19 +24,23 @@ object player {
 	//Metodos de movimiento
 	method moveRight(){
 		facing = "right"
-		position = juego.queNoSeSalga(position.right(1))
+		lastPosition = position
+		position = juego.queNoSeSalga(position.right(1),lastPosition)
 	}
 	method moveLeft(){
 		facing = "left"
-		position = juego.queNoSeSalga(position.left(1))
+		lastPosition = position
+		position = juego.queNoSeSalga(position.left(1),lastPosition)
 	}
 	method moveUp(){
 		facing = "up"
-		position = juego.queNoSeSalga(position.up(1))
+		lastPosition = position
+		position = juego.queNoSeSalga(position.up(1),lastPosition)
 	}
-		method moveDown(){
+	method moveDown(){
 		facing = "down"
-		position = juego.queNoSeSalga(position.down(1))
+		lastPosition = position
+		position = juego.queNoSeSalga(position.down(1),lastPosition)
 	}
 
 	method poder(){
@@ -42,7 +51,15 @@ object player {
 		game.say(self, msg)
 	}
 	method pickUp(thing){
-		inventory.Add(thing)
+		inventory.add(thing)
+	}
+	
+	method have(thing){
+		return inventory.contains(thing)
+	}
+	
+	method stay(){
+		position = lastPosition
 	}
 	
 }

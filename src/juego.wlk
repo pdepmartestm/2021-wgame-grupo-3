@@ -3,6 +3,9 @@ import player.*
 import timer.*
 import Escenario.*
 
+//Elementos de la habitacion
+const property key = new PickUp(image = "key.png",position = game.at(05,05))
+
 object juego {
 	const property width = 17
 	const property height = 14
@@ -11,6 +14,7 @@ object juego {
 	const property tDigit = new Digito(desc="tres",contador=4,position=game.at(07,12),time=60000, limit=5)
 	const property timer = [tDigit, sDigit, pDigit]
 	
+	
 	method iniciar() {
 		game.height(height)
       	game.width(width)
@@ -18,13 +22,16 @@ object juego {
 		
 		game.boardGround("roomBackground.jpg")
 		
+		//------------Visuales------------------------
 		game.addVisual(player)
+		game.addVisual(key)
+		
 		//------------Testeando la puerta------------------
 		game.addVisual(door)
 		game.whenCollideDo(player, { elemento =>
 			elemento.collision()
 		})
-		//-------------------------------------------------
+		
 		
 		timer.forEach{
 			unDigito => game.addVisual(unDigito)
@@ -45,14 +52,15 @@ object juego {
 	}
 	
 		//Quizas mover esto a otro lado
-		method queNoSeSalga(playerPosition){
+		method queNoSeSalga(playerPosition,lastPosition){
 		var newPosition = playerPosition
-		if(playerPosition.x() >= width) newPosition = game.at(0,newPosition.y())
-		if(playerPosition.x() < 0) newPosition = game.at(width-1,newPosition.y())
-		if(playerPosition.y() >= height) newPosition = game.at(newPosition.x(),0)
-		if(playerPosition.y() < 0) newPosition = game.at(newPosition.x(),height-1)
+		if (playerPosition.x() >= width-2 || 
+			playerPosition.x() < 2 || 
+			playerPosition.y() >= height-4 || 
+			playerPosition.y() < 3
+		) newPosition = lastPosition 
 		return newPosition
-		
 	}  
+		
 	
 }
