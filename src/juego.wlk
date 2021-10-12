@@ -3,8 +3,6 @@ import player.*
 import timer.*
 import Escenario.*
 
-//Elementos de la habitacion
-const key = new PickUp(image = "key.png",position = game.at(05,05))
 
 object juego {
 	const property width = 17
@@ -20,7 +18,7 @@ object juego {
       	game.width(width)
       	game.title("TP Game - NombreCreativoAqui")
 		
-		game.boardGround("roomBackground.jpg")
+		game.boardGround("assets/roomBackground.jpg")
 		
 		//------------Visuales------------------------
 		timer.forEach{
@@ -31,12 +29,12 @@ object juego {
 		
 		game.addVisual(player)
 		game.addVisual(door)
+		game.addVisual(box)
 		game.addVisual(key)
 		
 		//------------Collide------------------
 
 		game.whenCollideDo(player, { elemento =>
-			self.showInventory()
 			elemento.collision()
 		})
 		
@@ -47,23 +45,12 @@ object juego {
 		keyboard.up().onPressDo({player.moveUp()})
 		keyboard.down().onPressDo({player.moveDown() })
 		
-		
+		keyboard.space().onPressDo({player.interact()})
 		
 		game.start()
-	}
-	
-		//Quizas mover esto a otro lado
-		method queNoSeSalga(playerPosition,lastPosition){
-		var newPosition = playerPosition
-		if (playerPosition.x() >= width-2 || 
-			playerPosition.x() < 2 || 
-			playerPosition.y() >= height-4 || 
-			playerPosition.y() < 3
-		) newPosition = lastPosition 
-		return newPosition
-	}  
+	}	
 		
-		
+		// ¿Por que refresca cada item aca?
 		method showInventory(){
 			const inventory = player.inventory()
 			var x = 3

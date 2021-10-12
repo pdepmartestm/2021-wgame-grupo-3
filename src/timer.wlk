@@ -1,6 +1,6 @@
 class Digito {
 	var contador
-	var image="numeros/"+contador.toString()+".jpg"
+	var image="assets/numeros/"+contador.toString()+".jpg"
 	var property position
 	var property desc
 	var property time
@@ -16,7 +16,7 @@ class Digito {
 		else
 			contador -= 1
 			
-	    image="numeros/"+contador.toString()+".jpg"
+	    image="assets/numeros/"+contador.toString()+".jpg"
 	}
 }
 	
