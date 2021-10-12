@@ -44,7 +44,7 @@ object player {
 	}
 
 	method poder(){
-		return poder
+		//return poder
 	}
 	
 	method decir(msg){
@@ -58,8 +58,8 @@ object player {
 		return inventory.contains(thing)
 	}
 	
-	method stay(){
-		position = lastPosition
+	method inventory(){
+		return inventory
 	}
 	
 }

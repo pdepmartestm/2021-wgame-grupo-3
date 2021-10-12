@@ -31,7 +31,10 @@ class PickUp inherits Element {
 	
 	override method collision(){
 		player.pickUp(self)
-		game.removeVisual(self)
+		self.changePosition(2+player.inventory().size(),0)
+	}
+	method changePosition(x,y){
+		position = game.at(x,y)
 	}
 }
 
@@ -44,8 +47,10 @@ object door inherits Element(image = "closedDoor2.png",position = game.at(8,9)){
 	override method collision(){
 		if(player.have(key)){
 			//desbloquear siguiente nivel
-			
+			player.inventory().remove(key)
+			game.removeVisual(key)
 			image = "openDoor2.png"
+			
 		}
 	}
 	

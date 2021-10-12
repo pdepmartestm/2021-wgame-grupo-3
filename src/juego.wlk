@@ -4,7 +4,7 @@ import timer.*
 import Escenario.*
 
 //Elementos de la habitacion
-const property key = new PickUp(image = "key.png",position = game.at(05,05))
+const key = new PickUp(image = "key.png",position = game.at(05,05))
 
 object juego {
 	const property width = 17
@@ -23,21 +23,24 @@ object juego {
 		game.boardGround("roomBackground.jpg")
 		
 		//------------Visuales------------------------
-		game.addVisual(player)
-		game.addVisual(key)
-		
-		//------------Testeando la puerta------------------
-		game.addVisual(door)
-		game.whenCollideDo(player, { elemento =>
-			elemento.collision()
-		})
-		
-		
 		timer.forEach{
 			unDigito => game.addVisual(unDigito)
 						game.onTick(unDigito.time(),unDigito.desc()+"digit",{unDigito.cambia()})
 						
 		}
+		
+		game.addVisual(player)
+		game.addVisual(door)
+		game.addVisual(key)
+		
+		//------------Collide------------------
+
+		game.whenCollideDo(player, { elemento =>
+			self.showInventory()
+			elemento.collision()
+		})
+		
+		//------------Controles------------------
 		
 		keyboard.left().onPressDo({player.moveLeft() })
       	keyboard.right().onPressDo({player.moveRight() })
@@ -47,8 +50,6 @@ object juego {
 		
 		
 		game.start()
-		
-		
 	}
 	
 		//Quizas mover esto a otro lado
@@ -62,5 +63,16 @@ object juego {
 		return newPosition
 	}  
 		
+		
+		method showInventory(){
+			const inventory = player.inventory()
+			var x = 3
+			inventory.forEach{ item => 	
+					game.removeVisual(item)
+					item.changePosition(x,0);
+					game.addVisual(item)	
+					x++;
+			}
+		}
 	
 }
