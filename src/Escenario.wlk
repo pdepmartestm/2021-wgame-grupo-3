@@ -36,6 +36,7 @@ class Element {
 
 class PickUp inherits Element {
 	
+	
 	override method collision(){
 		player.pickUp(self)
 	}
@@ -65,11 +66,11 @@ object door inherits Element(image = "assets/closedDoor.png",position = game.at(
 	
 }
 
-object box inherits Element(image = "assets/box1.png",position = game.at(5,5), description = "Una caja comun", walkable = false){
+object box inherits Element(image = "assets/box1.png",position = game.at(5,6), description = "Una caja comun", walkable = false){
 	
 	
 }
 	
 //Elementos de la habitacion
-const key = new PickUp(image = "assets/key.png",position = game.at(05,05), description = "Parece una llave de una puerta")
+const key = new PickUp(image = "assets/key.png",position = game.at(07,05), description = "Parece una llave de una puerta")
 

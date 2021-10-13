@@ -24,7 +24,7 @@ object player {
 			nextPosition.x() < 2 || 
 			nextPosition.y() >= juego.height()-4 || 
 			nextPosition.y() < 3) ||
-			obj.any({x => x.walkable()})){
+			obj.any({x => !x.walkable()})){
 				newPosition = actualPosition 
 		} 
 		return newPosition
