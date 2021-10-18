@@ -64,7 +64,7 @@ object player {
 	method inventory(){
 		return inventory
 	}
-	
+/* 
 	// Hay alguna manera mejor de implementar esto?
 	method interact(){
 		var obj
@@ -85,6 +85,6 @@ object player {
 		if(obj.size() > 0){
 			obj.asList().last().interact()
 		}
-	}
+	}*/
 	
 }

@@ -2,6 +2,7 @@ import wollok.game.*
 import player.*
 import timer.*
 import Escenario.*
+import sombrero.*
 
 
 object juego {
@@ -27,7 +28,12 @@ object juego {
 						
 		}
 		
+		var door = new Element(image = "assets/closedDoor.png",position = game.at(8,10), description = "Una puerta cerrada", walkable = false)
+		var box = new Element(image = "assets/box1.png",position = game.at(5,6), description = "Una caja común", walkable = false)
+		var key = new PickUp(image = "assets/key.png",position = game.at(07,05), description = "Parece una llave de una puerta")
+		
 		game.addVisual(player)
+		game.addVisual(sombrero)
 		game.addVisual(door)
 		game.addVisual(box)
 		game.addVisual(key)
@@ -45,7 +51,7 @@ object juego {
 		keyboard.up().onPressDo({player.moveUp()})
 		keyboard.down().onPressDo({player.moveDown() })
 		
-		keyboard.space().onPressDo({player.interact()})
+		//keyboard.space().onPressDo({player.interact()})
 		
 		game.start()
 	}	

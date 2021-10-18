@@ -15,7 +15,7 @@ class Element {
 	var property image
 	var property position
 	var property walkable = true
-	var property description = ""
+	var property description
 	
 	method position(){
 		return position
@@ -26,12 +26,9 @@ class Element {
 	}
 	
 	method collision(){
-	}
-	
-	method interact(){
-		//Debug
 		player.decir(description)
 	}
+	
 }
 
 class PickUp inherits Element {
@@ -41,14 +38,11 @@ class PickUp inherits Element {
 		player.pickUp(self)
 	}
 
-	override method position(pos){
-		position = pos
-	}
 }
 
 
-object door inherits Element(image = "assets/closedDoor.png",position = game.at(8,10), description = "Una puerta cerrada", walkable = false){
-	
+/*object door inherits Element(image = "assets/closedDoor.png",position = game.at(8,10), description = "Una puerta cerrada", walkable = false){
+	/* 
 	override method interact(){
 		if(player.have(key)){
 			//desbloquear siguiente nivel
@@ -64,13 +58,13 @@ object door inherits Element(image = "assets/closedDoor.png",position = game.at(
 		}
 	}
 	
-}
+}*/
 
-object box inherits Element(image = "assets/box1.png",position = game.at(5,6), description = "Una caja comun", walkable = false){
+/*object box inherits Element(image = "assets/box1.png",position = game.at(5,6), description = "Una caja comun", walkable = false){
 	
 	
-}
+}*/
 	
 //Elementos de la habitacion
-const key = new PickUp(image = "assets/key.png",position = game.at(07,05), description = "Parece una llave de una puerta")
+//const key = new PickUp(image = "assets/key.png",position = game.at(07,05), description = "Parece una llave de una puerta")
 
