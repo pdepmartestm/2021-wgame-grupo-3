@@ -1,5 +1,2 @@
 import sombrero.*
 
-test "el sombrero habla" {
-	sombrero.habla()
-}

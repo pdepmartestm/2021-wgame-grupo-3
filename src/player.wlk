@@ -23,15 +23,16 @@ object player {
 		if ((nextPosition.x() >= juego.width()-2 || 
 			nextPosition.x() < 2 || 
 			nextPosition.y() >= juego.height()-4 || 
-			nextPosition.y() < 3) ||
-			obj.any({x => !x.walkable()})){
+			nextPosition.y() < 3) 
+			||obj.any({x => !x.walkable()})
+			){
 				newPosition = actualPosition 
 		} 
 		return newPosition
 	}  
 	
 	
-	//Metodos de movimiento
+	//Métodos de movimiento
 	method moveRight(){
 		facing = "right"
 		position = self.queNoSeSalga(position.right(1),position)
@@ -64,8 +65,8 @@ object player {
 	method inventory(){
 		return inventory
 	}
-/* 
-	// Hay alguna manera mejor de implementar esto?
+
+	//preguntar			
 	method interact(){
 		var obj
 		if (facing == "up"){
@@ -85,6 +86,6 @@ object player {
 		if(obj.size() > 0){
 			obj.asList().last().interact()
 		}
-	}*/
+	}
 	
 }

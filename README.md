@@ -1,10 +1,10 @@
-# Nombre del juego (<- borrar y completar)
+# Maze Escape (provisorio)
 
 ## Equipo de desarrollo
 
-- Alguien
-- Persona
-- etc.
+- Carreto, Julián
+- García, Nicolás
+- Desalvo, Darío
 
 ## Capturas
 
@@ -12,11 +12,11 @@
 
 ## Reglas de Juego / Instrucciones
 
-(Escribirlas)
+Para lograr ganar debes lograr escapar de todos los niveles antes de que se acabe el tiempo.
 
 
 ## Otros
 
-- Curso/Facultad
+- k2002
 - Versión de wollok
 - Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado

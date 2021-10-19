@@ -1,5 +1,7 @@
 import juego.*
 
+
 program juego {
 	juego.iniciar()
+	
 }

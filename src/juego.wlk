@@ -12,12 +12,20 @@ object juego {
 	const property sDigit = new Digito(desc="dos",contador=5,position=game.at(08,12),time=11000)
 	const property tDigit = new Digito(desc="tres",contador=4,position=game.at(07,12),time=60000, limit=5)
 	const property timer = [tDigit, sDigit, pDigit]
+	const musica = game.sound("assets/soundtrack.mp3")
 	
+	method description(){
+		return "test"
+	}
+	
+	method interact(){
+		
+	}
 	
 	method iniciar() {
 		game.height(height)
       	game.width(width)
-      	game.title("TP Game - NombreCreativoAqui")
+      	game.title("TP Game - Maze Escape")
 		
 		game.boardGround("assets/roomBackground.jpg")
 		
@@ -28,9 +36,8 @@ object juego {
 						
 		}
 		
-		var door = new Element(image = "assets/closedDoor.png",position = game.at(8,10), description = "Una puerta cerrada", walkable = false)
 		var box = new Element(image = "assets/box1.png",position = game.at(5,6), description = "Una caja común", walkable = false)
-		var key = new PickUp(image = "assets/key.png",position = game.at(07,05), description = "Parece una llave de una puerta")
+		
 		
 		game.addVisual(player)
 		game.addVisual(sombrero)
@@ -40,7 +47,7 @@ object juego {
 		
 		//------------Collide------------------
 
-		game.whenCollideDo(player, { elemento =>
+		game.onCollideDo(player, { elemento =>
 			elemento.collision()
 		})
 		
@@ -51,9 +58,16 @@ object juego {
 		keyboard.up().onPressDo({player.moveUp()})
 		keyboard.down().onPressDo({player.moveDown() })
 		
-		//keyboard.space().onPressDo({player.interact()})
-		
+		keyboard.space().onPressDo({player.interact()})
+
 		game.start()
+		
+	}
+	
+	method reproducirMusica(){
+		musica.initialize()
+		musica.play()
+		musica.volume(1)
 	}	
 		
 		// ¿Por que refresca cada item aca?
@@ -62,7 +76,7 @@ object juego {
 			var x = 3
 			inventory.forEach{ item => 	
 					game.removeVisual(item)
-					item.changePosition(x,0);
+					item.changePosition(game.at(x,0));
 					game.addVisual(item)	
 					x++;
 			}
