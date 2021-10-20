@@ -1,11 +1,18 @@
 import wollok.game.*
 import juego.*
 
+class Facing {
+	
+	var property position
+	var property text = "down"
+}
+
 object player {
 	
 	const inventory = []
 	var position = game.center()
-	var facing = "down"
+	const apuntando = new Facing(position = self.position().down(1))
+
 	
 	method position() {
 		return position
@@ -13,7 +20,7 @@ object player {
 
 
 	method image() {
-		return "assets/player-"+facing+".png"
+		return "assets/player-"+apuntando.text()+".png"
 	}
 	
 
@@ -34,20 +41,24 @@ object player {
 	
 	//Métodos de movimiento
 	method moveRight(){
-		facing = "right"
 		position = self.queNoSeSalga(position.right(1),position)
+		apuntando.position(self.position().right(1))
+		apuntando.text("right")
 	}
 	method moveLeft(){
-		facing = "left"
 		position = self.queNoSeSalga(position.left(1),position)
+		apuntando.position(self.position().left(1))
+		apuntando.text("left")
 	}
 	method moveUp(){
-		facing = "up"
 		position = self.queNoSeSalga(position.up(1),position)
+		apuntando.position(self.position().up(1))
+		apuntando.text("up")
 	}
 	method moveDown(){
-		facing = "down"
 		position = self.queNoSeSalga(position.down(1),position)
+		apuntando.position(self.position().down(1))
+		apuntando.text("down")
 	}
 
 	method decir(msg){
@@ -68,20 +79,7 @@ object player {
 
 	//preguntar			
 	method interact(){
-		var obj
-		if (facing == "up"){
-			obj = game.getObjectsIn(position.up(1))
-		}else{
-			if (facing == "left"){
-			obj = game.getObjectsIn(position.left(1))
-			}else{
-				if (facing == "down"){
-					obj = game.getObjectsIn(position.down(1))
-				}else{
-					obj = game.getObjectsIn(position.right(1))
-				}
-			}
-		}
+		const obj = game.getObjectsIn(apuntando.position())
 		
 		if(obj.size() > 0){
 			obj.asList().last().interact()
@@ -89,3 +87,5 @@ object player {
 	}
 	
 }
+
+
