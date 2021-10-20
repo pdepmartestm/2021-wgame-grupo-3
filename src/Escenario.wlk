@@ -4,9 +4,17 @@ import juego.*
 
 
 class Escenario {
-	var property objets = new List()
+	var property objetos = new List()
 	var property background
 	var property codigo
+	
+	method initialize(){
+		game.clear()
+		game.boardGround(background)
+		//dibujar objetos
+		objetos.forEach({x => game.addVisual(x)})
+		game.schedule(2000,{juego.reproducirMusica()})
+	}
 		
 }
 
@@ -39,7 +47,6 @@ class PickUp inherits Element {
 	
 	override method collision(){
 		player.pickUp(self)
-		juego.reproducirMusica()
 	}
 
 }

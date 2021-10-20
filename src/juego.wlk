@@ -14,6 +14,7 @@ object juego {
 	const property timer = [tDigit, sDigit, pDigit]
 	const musica = game.sound("assets/soundtrack.mp3")
 	
+	
 	method description(){
 		return "test"
 	}
@@ -27,23 +28,18 @@ object juego {
       	game.width(width)
       	game.title("TP Game - Maze Escape")
 		
-		game.boardGround("assets/roomBackground.jpg")
+		const box = new Element(image = "assets/box1.png",position = game.at(5,6), description = "Una caja común", walkable = false)
 		
+		const nivel1 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[box,sombrero,door,key,player])
+		
+		
+
 		//------------Visuales------------------------
 		timer.forEach{
 			unDigito => game.addVisual(unDigito)
 						game.onTick(unDigito.time(),unDigito.desc()+"digit",{unDigito.cambia()})
 						
 		}
-		
-		var box = new Element(image = "assets/box1.png",position = game.at(5,6), description = "Una caja común", walkable = false)
-		
-		
-		game.addVisual(player)
-		game.addVisual(sombrero)
-		game.addVisual(door)
-		game.addVisual(box)
-		game.addVisual(key)
 		
 		//------------Collide------------------
 
@@ -63,12 +59,6 @@ object juego {
 		game.start()
 		
 	}
-	
-	method reproducirMusica(){
-		musica.initialize()
-		musica.play()
-		musica.volume(1)
-	}	
 		
 		// ¿Por que refresca cada item aca?
 		method showInventory(){
@@ -80,6 +70,12 @@ object juego {
 					game.addVisual(item)	
 					x++;
 			}
+		}
+		
+		method reproducirMusica(){	
+			musica.initialize()
+			musica.play()
+			musica.volume(1)
 		}
 	
 }
