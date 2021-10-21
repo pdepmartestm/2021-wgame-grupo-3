@@ -7,8 +7,9 @@ class Escenario {
 	var property objetos = new List()
 	var property background
 	var property codigo
+	var property completado = false
 	
-	method initialize(){
+	method inicializar(){
 		game.clear()
 		game.boardGround(background)
 		//dibujar objetos
@@ -52,24 +53,28 @@ class PickUp inherits Element {
 }
 
 
-//Elementos fijos de la habitación
+///-------------------- Nivel1 -------------------
 
-const key = new PickUp(image = "assets/key.png",position = game.at(07,05), description = "Parece una llave de una puerta")
+	const box = new Element(image = "assets/box1.png",position = game.at(5,6), description = "Una caja común", walkable = false)
+	//Elementos fijos de la habitación
 
-object door inherits Element(image = "assets/closedDoor.png", position = game.at(8,10), description = "Una puerta cerrada", walkable = false) {
+	const key = new PickUp(image = "assets/key.png",position = game.at(07,05), description = "Parece una llave de una puerta")
 	
-override method interact(){
-		if(player.have(key)){
-			//desbloquear siguiente nivel
-			player.inventory().remove(key)
-			game.removeVisual(key)
-			image = "assets/openDoor.png"
-			description = "La puerta se ha abierto!"
-			walkable = true
-			
-		}
-		else {
-			super()
+	object door inherits Element(image = "assets/closedDoor.png", position = game.at(8,10), description = "Una puerta cerrada") {
+		var open = false
+	override method interact(){
+			if(player.have(key)){
+				//desbloquear siguiente nivel
+				player.inventory().remove(key)
+				game.removeVisual(key)
+				image = "assets/openDoor.png"
+				description = "La puerta se ha abierto!"
+				open = true
+				//Hacer un schedule aca para cambiar nivel
+				//juego.cargarnivel2()
+			}
+			else {
+				super()
+			}
 		}
 	}
-}

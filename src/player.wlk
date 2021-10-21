@@ -10,15 +10,10 @@ class Facing {
 object player {
 	
 	const inventory = []
-	var position = game.center()
+	var property position = game.center()
 	const apuntando = new Facing(position = self.position().down(1))
 
 	
-	method position() {
-		return position
-	}
-
-
 	method image() {
 		return "assets/player-"+apuntando.text()+".png"
 	}
@@ -76,8 +71,7 @@ object player {
 	method inventory(){
 		return inventory
 	}
-
-	//preguntar			
+		
 	method interact(){
 		const obj = game.getObjectsIn(apuntando.position())
 		

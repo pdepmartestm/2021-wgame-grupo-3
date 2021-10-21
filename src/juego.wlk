@@ -14,13 +14,14 @@ object juego {
 	const property timer = [tDigit, sDigit, pDigit]
 	const musica = game.sound("assets/soundtrack.mp3")
 	
+	var nivel1 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[box,sombrero,door,key,player])
+	var nivel2 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[door,key,player])
 	
-	method description(){
-		return "test"
-	}
+	const niveles = [nivel1,nivel2]
 	
-	method interact(){
-		
+	method cargarNivel(numero){
+		niveles.get(numero).inicializar()
+		player.position(game.center())
 	}
 	
 	method iniciar() {
@@ -28,9 +29,8 @@ object juego {
       	game.width(width)
       	game.title("TP Game - Maze Escape")
 		
-		const box = new Element(image = "assets/box1.png",position = game.at(5,6), description = "Una caja común", walkable = false)
+		self.cargarNivel(0)
 		
-		const nivel1 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[box,sombrero,door,key,player])
 		
 		
 
@@ -72,7 +72,8 @@ object juego {
 			}
 		}
 		
-		method reproducirMusica(){	
+		method reproducirMusica(){
+			
 			musica.initialize()
 			musica.play()
 			musica.volume(1)
