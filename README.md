@@ -2,7 +2,7 @@
 
 ## Equipo de desarrollo
 
-- Carreto, Julián
+- Carretto, Julián
 - García, Nicolás
 - Desalvo, Darío
 
