@@ -9,8 +9,8 @@ object juego {
 	const property width = 17
 	const property height = 14
 	const property pDigit = new Digito(contador=9,position=game.at(09,12),time=1000)
-	const property sDigit = new Digito(contador=2,position=game.at(08,12),time=10000)
-	const property tDigit = new Digito(contador=1,position=game.at(07,12),time=60000)
+	const property sDigit = new Digito(contador=1,position=game.at(08,12),time=10000, limit=5)
+	const property tDigit = new Digito(contador=1,position=game.at(07,12),time=30000)
 	const property timer = [tDigit, sDigit, pDigit]
 	const musica = game.sound("assets/soundtrack.mp3")
 	
