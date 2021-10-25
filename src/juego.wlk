@@ -8,38 +8,28 @@ import sombrero.*
 object juego {
 	const property width = 17
 	const property height = 14
-	const property pDigit = new Digito(desc="uno",contador=0,position=game.at(09,12),time=1000, limit=9)
-	const property sDigit = new Digito(desc="dos",contador=5,position=game.at(08,12),time=11000)
-	const property tDigit = new Digito(desc="tres",contador=4,position=game.at(07,12),time=60000, limit=5)
+	const property pDigit = new Digito(contador=9,position=game.at(09,12),time=1000)
+	const property sDigit = new Digito(contador=1,position=game.at(08,12),time=10000, limit=5)
+	const property tDigit = new Digito(contador=1,position=game.at(07,12),time=30000)
 	const property timer = [tDigit, sDigit, pDigit]
 	const musica = game.sound("assets/soundtrack.mp3")
 	
-	var nivel1 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[box,sombrero,door,key,player])
-	var nivel2 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[door,key,player])
+	const nivel1 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[box,sombrero,door,key,player])
+	const nivel2 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[door2,cuadro1,cuadro2,keyCuadro2,cama,armario,keyArmario,keyPuerta,player])
 	
 	const niveles = [nivel1,nivel2]
 	
 	method cargarNivel(numero){
 		niveles.get(numero).inicializar()
 		player.position(game.center())
-	}
-	
-	method iniciar() {
-		game.height(height)
-      	game.width(width)
-      	game.title("TP Game - Maze Escape")
 		
-		self.cargarNivel(0)
-		
-		
-		
-
 		//------------Visuales------------------------
 		timer.forEach{
 			unDigito => game.addVisual(unDigito)
-						game.onTick(unDigito.time(),unDigito.desc()+"digit",{unDigito.cambia()})
+						game.onTick(unDigito.time(),"CambiandoDigito",{unDigito.cambia()})
 						
 		}
+		game.schedule(120000,{game.say(player, "Perdi!"); game.stop()})
 		
 		//------------Collide------------------
 
@@ -48,13 +38,20 @@ object juego {
 		})
 		
 		//------------Controles------------------
-		
 		keyboard.left().onPressDo({player.moveLeft() })
       	keyboard.right().onPressDo({player.moveRight() })
 		keyboard.up().onPressDo({player.moveUp()})
 		keyboard.down().onPressDo({player.moveDown() })
 		
 		keyboard.space().onPressDo({player.interact()})
+	}
+	
+	method iniciar() {
+		game.height(height)
+      	game.width(width)
+      	game.title("TP Game - Maze Escape")
+		
+		self.cargarNivel(0)	
 
 		game.start()
 		
@@ -62,11 +59,10 @@ object juego {
 		
 		// ¿Por que refresca cada item aca?
 		method showInventory(){
-			const inventory = player.inventory()
 			var x = 3
-			inventory.forEach{ item => 	
+			player.inventory().forEach{ item => 	
 					game.removeVisual(item)
-					item.changePosition(game.at(x,0));
+					item.position((game.at(x,0)))
 					game.addVisual(item)	
 					x++;
 			}

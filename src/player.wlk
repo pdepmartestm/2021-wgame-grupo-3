@@ -62,6 +62,8 @@ object player {
 	method pickUp(thing){
 		inventory.add(thing)
 		thing.position(game.at(2+self.inventory().size(),0))
+		juego.showInventory()
+		
 	}
 	
 	method have(thing){
