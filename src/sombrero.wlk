@@ -8,7 +8,7 @@ object sombrero {
 	var property walkable = false
 	
 	method image(){
-	return "assets/sombrero.png"
+	return "assets/sombrero2.png"
 	}
 	
 	method azar(){

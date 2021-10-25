@@ -14,7 +14,7 @@ class Escenario {
 		game.boardGround(background)
 		//dibujar objetos
 		objetos.forEach({x => game.addVisual(x)})
-		game.schedule(2000,{juego.reproducirMusica()})
+		//game.schedule(2000,{juego.reproducirMusica()})
 	}
 		
 }
@@ -61,7 +61,7 @@ class PickUp inherits Element {
 	const key = new PickUp(image = "assets/key.png",position = game.at(07,05), description = "Parece una llave de una puerta")
 	
 	object door inherits Element(image = "assets/closedDoor.png", position = game.at(8,10), description = "Una puerta cerrada") {
-		var open = false
+
 	override method interact(){
 			if(player.have(key)){
 				//desbloquear siguiente nivel
@@ -69,12 +69,36 @@ class PickUp inherits Element {
 				game.removeVisual(key)
 				image = "assets/openDoor.png"
 				description = "La puerta se ha abierto!"
-				open = true
 				//Hacer un schedule aca para cambiar nivel
-				//juego.cargarnivel2()
+				game.schedule(1000,{juego.cargarNivel(1)})
 			}
 			else {
 				super()
 			}
 		}
 	}
+	
+	///-------------------- Nivel2 -------------------
+	//Elementos fijos de la habitación
+	const cuadro1 = new Element(image = "assets/cuadro1.png",position = game.at(5,10), description = "Una cuadro de unas flores", walkable = false)
+	const cuadro2 = new Element(image = "assets/cuadro3-grande.png",position = game.at(11,10), description = "Una cuadro de unas flores", walkable = false)
+
+	const key2 = new PickUp(image = "assets/key.png",position = game.at(07,05), description = "Parece una llave de una puerta")
+	
+	object door2 inherits Element(image = "assets/closedDoor.png", position = game.at(8,10), description = "Una puerta cerrada") {
+	override method interact(){
+			if(player.have(key2)){
+				//desbloquear siguiente nivel
+				player.inventory().remove(key2)
+				game.removeVisual(key2)
+				image = "assets/openDoor.png"
+				description = "La puerta se ha abierto!"
+				//Hacer un schedule aca para cambiar nivel
+				game.schedule(1000,{juego.cargarNivel(2)})
+			}
+			else {
+				super()
+			}
+		}
+	}
+	
