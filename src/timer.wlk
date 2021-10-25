@@ -2,9 +2,8 @@ class Digito {
 	var contador
 	var image="assets/numeros/"+contador.toString()+".jpg"
 	var property position
-	var property desc
 	var property time
-	var property limit = 5
+	var property limit = 9
 	
 	method image(){
 		return image
