@@ -3,7 +3,7 @@ import player.*
 import timer.*
 import Escenario.*
 import sombrero.*
-
+import nivel3.*
 
 object juego {
 	const property width = 17
@@ -16,8 +16,9 @@ object juego {
 	
 	const nivel1 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[box,sombrero,door,key,player])
 	const nivel2 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[door2,cuadro1,cuadro2,keyCuadro2,cama,armario,keyArmario,keyPuerta,player])
+	const nivel3 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos= buttons + [door3,confirmButton,player])
 	
-	const niveles = [nivel1,nivel2]
+	const niveles = [nivel1,nivel2,nivel3]
 	
 	method cargarNivel(numero){
 		niveles.get(numero).inicializar()

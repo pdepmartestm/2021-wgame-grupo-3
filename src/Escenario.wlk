@@ -1,6 +1,7 @@
 import wollok.game.*
 import player.*
 import juego.*
+import nivel3.*
 
 
 class Escenario {
@@ -71,6 +72,7 @@ class PickUp inherits Element {
 				description = "La puerta se ha abierto!"
 				//Hacer un schedule aca para cambiar nivel
 				game.schedule(1000,{juego.cargarNivel(1)})
+				
 			}
 			else {
 				super()
@@ -106,7 +108,7 @@ class PickUp inherits Element {
 				description = "La cerradura del cuadro ha sido abierta!"
 				//Hacer que se destrabe el cajon
 				game.say(armario,"Click")
-				game.say(player,"Habia una pequeña llave escondida en el marco!")
+				game.say(player,"Habia una pequeña llave escondida en el marcdeo!")
 				player.pickUp(keyArmario)
 			}
 			else {
@@ -156,6 +158,7 @@ class PickUp inherits Element {
 				description = "La puerta se ha abierto!"
 				//Hacer un schedule aca para cambiar nivel
 				game.schedule(1000,{juego.cargarNivel(2)})
+				//game.onTick(2500,"Saying hint",{secuences.hint()}) Implementar que ocurra esto al iniciar el 3er nivel
 			}
 			else {
 				super()
