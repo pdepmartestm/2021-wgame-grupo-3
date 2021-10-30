@@ -12,8 +12,11 @@
 
 ## Reglas de Juego / Instrucciones
 
-Para lograr ganar debes lograr escapar de todos los niveles antes de que se acabe el tiempo.
+Escapa de este simple juego de escape antes de que se acabe el tiempo!
+Deberas encontrar los objetos que abren la puerta al siguiente nivel e interactuar con ellos
+en el orden correcto para seguir avanzando.
 
+(Puedes interactuar con los objetos presionando "Espacio")
 
 ## Otros
 

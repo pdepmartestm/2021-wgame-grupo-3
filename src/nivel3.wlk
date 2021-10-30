@@ -19,7 +19,7 @@ class Button inherits Element {
 	method unPress(){
 		image = "assets/button.png"
 		isPressed = false
-		description = "Un botón " + color
+		description = "Un botón "+color
 	}
 
 	override method collision(){
@@ -96,10 +96,13 @@ object door3 inherits Element(image = "assets/closedDoor.png", position = game.a
 		if(unlocked){
 		game.say(player,self.description())
 		game.removeTickEvent("Saying hint")
+		
+		//Fin del juego!
 		game.schedule(800,{juego.cargarNivel(0)})
+		
 		}
 		else{
-		game.say(player,self.description())
+			super()
 		}
 		
 	}
