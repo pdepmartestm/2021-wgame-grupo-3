@@ -12,9 +12,9 @@ object juego {
 	
 	const musica = game.sound("assets/soundtrack.mp3")
 	
-	const nivel1 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[box,sombrero,door,key,player])
-	const nivel2 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos=[door2,cuadro1,cuadro2,keyCuadro2,cama,armario,keyArmario,keyPuerta,keyCuadro1,player])
-	const nivel3 = new Escenario(background="assets/roomBackground.jpg", codigo=1234, objetos= buttons + [door3,confirmButton,player])
+	const nivel1 = new Escenario(background="assets/roomBackground.jpg", objetos=[box,sombrero,door,key,player])
+	const nivel2 = new Escenario(background="assets/roomBackground.jpg", objetos=[door2,cuadro1,cuadro2,keyCuadro2,cama,armario,keyArmario,keyPuerta,keyCuadro1,player])
+	const nivel3 = new Escenario(background="assets/roomBackground.jpg", objetos= buttons + [door3,confirmButton,player])
 	
 	const niveles = [nivel1,nivel2,nivel3]
 	

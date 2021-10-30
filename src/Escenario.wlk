@@ -7,7 +7,6 @@ import nivel3.*
 class Escenario {
 	var property objetos = new List()
 	var property background
-	var property codigo
 	var property completado = false
 	
 	method inicializar(){

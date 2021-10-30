@@ -35,7 +35,10 @@ class Button inherits Element {
 
 object confirmButton inherits Element(position = game.at(8,6),description = "Un botón",image = "assets/confirmButton.png", walkable = false){
 	
+	var hints = false
 	override method interact(){
+		
+		if(not(hints)) {game.onTick(1000,"HintGiver",{secuences.hint()});hints = true}
 		self.validate()
 	}
 	
@@ -52,6 +55,7 @@ object confirmButton inherits Element(position = game.at(8,6),description = "Un 
 	}
 	
 	
+	
 }
 
 const greenButton = new Button(color = "verde",pressedImage = "assets/pressedGreenButton.png", position = game.at(6,4),description = "Un botón",image = "assets/button.png")
@@ -65,7 +69,7 @@ object secuences {
 	const validSecuence = ["verde","azul","amarillo","rojo"]
 	const currentSecuence = []
 	const hints = ["Al principio nos rodeaba la frondoza naturaleza,","con la inagotable agua de la lluvia se nutría","hasta que el sol irrumpió sin cesar","y asi se alzó el fuego, que no se pudo apagar."]
-	var property currentHint = 0
+	var currentHint = 0
 	
 	method currentSecuence(){
 		return currentSecuence
@@ -77,7 +81,9 @@ object secuences {
 	
 	
 	method hint(){
-		if(currentHint == 4) currentHint = 0
+		if(currentHint == 4) {currentHint = 0}
+		
+		console.println("Hint: "+hints.get(currentHint))
 		game.say(confirmButton, hints.get(currentHint))
 		currentHint++
 	}
@@ -89,17 +95,17 @@ object door3 inherits Element(image = "assets/closedDoor.png", position = game.a
 	method unlock(){
 				image = "assets/openDoor.png"
 				description = "La puerta se ha abierto!"
+				game.say(self,"Click!")
+				game.removeTickEvent("HintGiver")
 				unlocked = true
 	}
 	
 	override method interact(){
 		if(unlocked){
 		game.say(player,self.description())
-		game.removeTickEvent("Saying hint")
-		
 		//Fin del juego!
-		game.schedule(800,{juego.cargarNivel(0)})
-		
+		player.decir("He logrado Escapar!")
+		game.schedule(2000,{game.stop()})	
 		}
 		else{
 			super()
@@ -107,6 +113,3 @@ object door3 inherits Element(image = "assets/closedDoor.png", position = game.a
 		
 	}
 }
-
-
-
