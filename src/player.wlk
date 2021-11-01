@@ -9,9 +9,9 @@ class Facing {
 
 object player {
 	
-	const inventory = []
+	var inventory = []
 	var property position = game.center()
-	const apuntando = new Facing(position = self.position().down(1))
+	var apuntando = new Facing(position = self.position().down(1))
 
 	
 	method image() {
@@ -60,10 +60,10 @@ object player {
 		game.say(self, msg)
 	}
 	method pickUp(thing){
+		//a futuro ver si el inventario es infinito o definir qué sucede cuando se llena
 		inventory.add(thing)
 		thing.position(game.at(2+self.inventory().size(),0))
 		juego.showInventory()
-		
 	}
 	
 	method have(thing){

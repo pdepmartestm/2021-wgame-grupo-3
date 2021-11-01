@@ -89,6 +89,7 @@ object secuences {
 	}
 }
 
+//Como es la puerta final no usamos la clase
 object door3 inherits Element(image = "assets/closedDoor.png", position = game.at(8,10), description = "Una puerta cerrada"){
 	var property unlocked = false
 	
@@ -105,7 +106,7 @@ object door3 inherits Element(image = "assets/closedDoor.png", position = game.a
 		game.say(player,self.description())
 		//Fin del juego!
 		player.decir("He logrado Escapar!")
-		game.schedule(2000,{game.stop()})	
+		game.schedule(4000,{game.stop()})	
 		}
 		else{
 			super()

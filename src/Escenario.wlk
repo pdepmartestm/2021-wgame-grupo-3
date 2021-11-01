@@ -1,10 +1,9 @@
-import wollok.game.*
 import player.*
 import juego.*
-import nivel3.*
+import wollok.game.*
 
 
-class Escenario {
+class Nivel {
 	var property objetos = new List()
 	var property background
 	var property completado = false
@@ -12,9 +11,8 @@ class Escenario {
 	method inicializar(){
 		game.clear()
 		game.boardGround(background)
-		//dibujar objetos
+		//Dibuja los objetos del nivel
 		objetos.forEach({x => game.addVisual(x)})
-		//game.schedule(2000,{juego.reproducirMusica()})
 	}
 		
 }
@@ -52,6 +50,32 @@ class PickUp inherits Element {
 
 }
 
+class Puerta inherits Element {
+	
+	override method interact(){
+			
+			
+			if(player.have(keyPuerta)){
+				//desbloquear siguiente nivel
+				player.inventory().remove(keyPuerta)
+				game.removeVisual(keyPuerta)
+				player.inventory().clear()
+				image = "assets/openDoor.png"
+				description = "La puerta se ha abierto!"
+				//Hacer un schedule aca para cambiar nivel
+
+				game.schedule(1000,{juego.cargarNivel()})
+				
+			}else{
+				super()
+			}
+		
+					
+		}
+	
+	
+}
+
 
 ///-------------------- Nivel1 -------------------
 
@@ -65,26 +89,36 @@ class PickUp inherits Element {
 	const box8 = new Element(image = "assets/box1.png",position = game.at(14,5), description = "Una caja común", walkable = false)
 	//Elementos fijos de la habitación
 
-	const key = new PickUp(image = "assets/key.png",position = game.at(13,4), description = "Parece una llave de una puerta")
+	const billete = new PickUp(image="assets/billete.jpg", position=game.at(6,8), description= "Es un billete")
+	const door = new Puerta(image = "assets/closedDoor.png", position = game.at(8,10), description = "La primer puerta cerrada")
+	const fakeDoor = new Element(image = "assets/closedDoor.png", position = game.at(10,10), description = "Parece una puerta falsa")	
 	
-	object door inherits Element(image = "assets/closedDoor.png", position = game.at(8,10), description = "Una puerta cerrada") {
-
-	override method interact(){
-			if(player.have(key)){
-				//desbloquear siguiente nivel
-				player.inventory().remove(key)
-				game.removeVisual(key)
-				image = "assets/openDoor.png"
-				description = "La puerta se ha abierto!"
-				//Hacer un schedule aca para cambiar nivel
-				game.schedule(1000,{juego.cargarNivel(1)})
-				
-			}
-			else {
-				super()
-			}
-		}
+const keyPuerta = new PickUp(image = "assets/key.png",position = game.at(13,4), description = "Parece una llave de una puerta")
+		
+object sombrero {
+	
+	var property position=game.at(05, 06)
+	var property frases=["escapa rápido", "debes pensar por ti mismo","soy el sombrero seleccionador que te ayudará"]
+	var property description="para explorar un objeto presiona space"
+	var property walkable = true
+	
+	method image(){
+	return "assets/sombrero.png"
 	}
 	
+	method azar(){
+		return 0.randomUpTo(frases.size()-1)
+	}	
+	method collision(){
+		game.say(self,description)
+		game.schedule(2000,{juego.reproducirMusica()})
+		walkable=false
+	}
+	
+	method interact(){
+		game.say(self,frases.get(self.azar()))
+	}
+
+}
 
 	

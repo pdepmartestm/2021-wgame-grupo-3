@@ -1,2 +1,11 @@
-import sombrero.*
+import player.*
+import Escenario.*
+import wollok.game.*
+
+test "el jugador levanta un objeto"{
+	const manzana = new PickUp(image = "assets/manzana.png", position = game.at(7,10), description = "Una Manzana")
+	game.addVisual(manzana)
+	player.pickUp(manzana)
+	assert.that(player.have(manzana))
+}
 

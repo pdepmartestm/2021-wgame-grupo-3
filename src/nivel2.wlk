@@ -2,7 +2,6 @@ import wollok.game.*
 import player.*
 import Escenario.*
 import juego.*
-import sombrero.*
 
 ///-------------------- Nivel2 -------------------
 //Elementos fijos de la habitación
@@ -13,7 +12,9 @@ import sombrero.*
 				game.say(self,"Click")
 				player.inventory().remove(keyCuadro1)
 				game.removeVisual(keyCuadro1)
-				game.say(player,"Habia una llave detras del cuadro!")
+				game.schedule(1000,{game.say(player,"Había una llave detras del cuadro!")})
+				keyPuerta.position(game.at(99,99))
+				game.addVisual(keyPuerta)
 				player.pickUp(keyPuerta)
 			}
 			else {
@@ -21,10 +22,6 @@ import sombrero.*
 			}
 		}
 	}
-	const keyCuadro2 = new Element(image = "assets/key.png",position = game.at(99,99), description = "", walkable = false)
-	const keyArmario = new Element(image = "assets/key.png",position = game.at(99,99), description = "", walkable = false)
-	const keyCuadro1 = new Element(image = "assets/key.png",position = game.at(99,99), description = "", walkable = false)
-	const keyPuerta = new Element(image = "assets/key.png",position = game.at(99,99), description = "", walkable = false)
 	
 	object cuadro2 inherits Element(image = "assets/cuadro3-grande.png",position = game.at(11,10), description = "Hay un orificio extraño en el marco del cuadro", walkable = false){
 		override method interact(){
@@ -34,8 +31,8 @@ import sombrero.*
 				game.removeVisual(keyCuadro2)
 				description = "La cerradura del cuadro ha sido abierta!"
 				//Hacer que se destrabe el cajon
-				game.say(armario,"Click")
-				game.say(player,"Habia una pequeña llave escondida en el marcdeo!")
+				game.schedule(1000,{game.say(armario,"Click")})
+				game.schedule(1000,{game.say(player,"Había una pequeña llave escondida en el marco!")})
 				player.pickUp(keyArmario)
 			}
 			else {
@@ -44,13 +41,13 @@ import sombrero.*
 		}
 	}
 	
-	object cama inherits Element(image = "assets/cama-grande.png",position = game.at(2,6), description = "La cama esta muy desordenada", walkable = false){
+	object cama inherits Element(image = "assets/cama-grande.png",position = game.at(2,6), description = "La cama está muy desordenada", walkable = false){
 		var property interacted = false
 		override method interact(){
 			if(not(player.have(keyCuadro2)) && not(self.interacted())){
 				//desbloquear llave del otro cuadro
-				game.say(self,"*Ruido a sabanas*")
-				game.say(player,"Encontre una llave debajo de las sabanas")
+				game.schedule(1000,{game.say(self,"*Ruido a sabanas*")})
+				game.schedule(1000,{game.say(player,"Encontre una llave debajo de las sabanas")})
 				self.interacted(true)
 				player.pickUp(keyCuadro2)
 			}
@@ -68,29 +65,17 @@ import sombrero.*
 				player.inventory().remove(keyArmario)
 				game.removeVisual(keyArmario)
 				player.pickUp(keyCuadro1)
-				game.say(cuadro1,"*Click*")
+				game.schedule(1000,{game.say(cuadro1,"*Click*")})
 			}
 			else {
 				super()
 			}
 		}
 	}
+	
 
-
-	object door2 inherits Element(image = "assets/closedDoor.png", position = game.at(8,10), description = "Una puerta cerrada") {
-	override method interact(){
-			if(player.have(keyPuerta)){
-				//desbloquear siguiente nivel
-				player.inventory().remove(keyPuerta)
-				game.removeVisual(keyPuerta)
-				image = "assets/openDoor.png"
-				description = "La puerta se ha abierto!"
-				//Hacer un schedule aca para cambiar nivel
-				game.schedule(1000,{juego.cargarNivel(2)})
-				//game.onTick(2500,"Saying hint",{secuences.hint()}) Implementar que ocurra esto al iniciar el 3er nivel
-			}
-			else {
-				super()
-			}
-		}
-	}
+const door2 = new Puerta(image = "assets/closedDoor.png", position = game.at(8,10), description = "Otra puerta cerrada")
+const keyCuadro2 = new Element(image = "assets/key.png",position = game.at(99,99), description = "", walkable = false)
+const keyArmario = new Element(image = "assets/key.png",position = game.at(99,99), description = "", walkable = false)
+const keyCuadro1 = new Element(image = "assets/key.png",position = game.at(99,99), description = "", walkable = false)
+const manzana= new PickUp(image="assets/manzana.png", position= game.at(6,8),description="Fruta noble")	

@@ -2,7 +2,6 @@ import wollok.game.*
 import player.*
 import timer.*
 import Escenario.*
-import sombrero.*
 import nivel2.*
 import nivel3.*
 
@@ -12,14 +11,16 @@ object juego {
 	
 	const musica = game.sound("assets/soundtrack.mp3")
 	
-	const nivel1 = new Escenario(background="assets/roomBackground.jpg", objetos=[box1,box2,box3,box4,box5,box6,box7,box8,sombrero,door,key,player])
-	const nivel2 = new Escenario(background="assets/roomBackground.jpg", objetos=[door2,cuadro1,cuadro2,keyCuadro2,cama,armario,keyArmario,keyPuerta,keyCuadro1,player])
-	const nivel3 = new Escenario(background="assets/roomBackground.jpg", objetos= buttons + [door3,confirmButton,player])
+	const nivel1 = new Nivel(background="assets/roomBackground.jpg", objetos=[billete,fakeDoor,box1,box2,box3,box4,box5,box6,box7,box8,sombrero,door,keyPuerta,player])
+	const nivel2 = new Nivel(background="assets/roomBackground.jpg", objetos=[manzana,door2,cuadro1,cuadro2,keyCuadro2,cama,armario,keyArmario,keyCuadro1,player])
+	const nivel3 = new Nivel(background="assets/roomBackground.jpg", objetos= buttons + [door3,confirmButton,player])
 	
 	const niveles = [nivel1,nivel2,nivel3]
 	
-	method cargarNivel(numero){
-		niveles.get(numero).inicializar()
+	method cargarNivel(){
+		const nivel = niveles.get(0)
+		nivel.inicializar()
+		niveles.remove(nivel)
 		player.position(game.center())
 		const timer = new MyTimer(contador=100)
 		game.onTick(1000,"CambiandoTimer",{timer.cambia()})
@@ -44,14 +45,13 @@ object juego {
       	game.width(width)
       	game.title("TP Game - Maze Escape")
 		
-		self.cargarNivel(0)	
+		self.cargarNivel()	
 
 		game.start()
 		
 	}
-		
-		// ¿Por que refresca cada item aca?
-		method showInventory(){
+	
+	method showInventory(){
 			var x = 3
 			player.inventory().forEach{ item => 	
 					game.removeVisual(item)
