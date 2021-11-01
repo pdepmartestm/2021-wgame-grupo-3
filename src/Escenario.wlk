@@ -55,10 +55,17 @@ class PickUp inherits Element {
 
 ///-------------------- Nivel1 -------------------
 
-	const box = new Element(image = "assets/box1.png",position = game.at(5,6), description = "Una caja común", walkable = false)
+	const box1 = new Element(image = "assets/box1.png",position = game.at(3,6), description = "Una caja común", walkable = false)
+	const box2 = new Element(image = "assets/box1.png",position = game.at(8,3), description = "Una caja común", walkable = false)
+	const box3 = new Element(image = "assets/box1.png",position = game.at(8,4), description = "Una caja común", walkable = false)
+	const box4 = new Element(image = "assets/box1.png",position = game.at(10,4), description = "Una caja común", walkable = false)
+	const box5 = new Element(image = "assets/box1.png",position = game.at(11,4), description = "Una caja común", walkable = false)
+	const box6 = new Element(image = "assets/box1.png",position = game.at(12,4), description = "Una caja común", walkable = false)
+	const box7 = new Element(image = "assets/box1.png",position = game.at(13,5), description = "Una caja común", walkable = false)
+	const box8 = new Element(image = "assets/box1.png",position = game.at(14,5), description = "Una caja común", walkable = false)
 	//Elementos fijos de la habitación
 
-	const key = new PickUp(image = "assets/key.png",position = game.at(07,05), description = "Parece una llave de una puerta")
+	const key = new PickUp(image = "assets/key.png",position = game.at(13,4), description = "Parece una llave de una puerta")
 	
 	object door inherits Element(image = "assets/closedDoor.png", position = game.at(8,10), description = "Una puerta cerrada") {
 

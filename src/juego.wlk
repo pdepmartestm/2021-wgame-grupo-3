@@ -12,7 +12,7 @@ object juego {
 	
 	const musica = game.sound("assets/soundtrack.mp3")
 	
-	const nivel1 = new Escenario(background="assets/roomBackground.jpg", objetos=[box,sombrero,door,key,player])
+	const nivel1 = new Escenario(background="assets/roomBackground.jpg", objetos=[box1,box2,box3,box4,box5,box6,box7,box8,sombrero,door,key,player])
 	const nivel2 = new Escenario(background="assets/roomBackground.jpg", objetos=[door2,cuadro1,cuadro2,keyCuadro2,cama,armario,keyArmario,keyPuerta,keyCuadro1,player])
 	const nivel3 = new Escenario(background="assets/roomBackground.jpg", objetos= buttons + [door3,confirmButton,player])
 	
@@ -21,7 +21,7 @@ object juego {
 	method cargarNivel(numero){
 		niveles.get(numero).inicializar()
 		player.position(game.center())
-		const timer = new MyTimer(contador=40)
+		const timer = new MyTimer(contador=100)
 		game.onTick(1000,"CambiandoTimer",{timer.cambia()})
 		
 		//------------Collide------------------

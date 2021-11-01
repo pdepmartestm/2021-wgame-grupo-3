@@ -2,13 +2,13 @@ import wollok.game.*
 
 object sombrero {
 	
-	var property position=game.at(02, 03)
+	var property position=game.at(05, 06)
 	var property frases=["escapa rápido", "debes pensar por ti mismo","para explorar un objeto presiona space"]
 	var property description="soy el sombrero seleccionador que te ayudará"
 	var property walkable = false
 	
 	method image(){
-	return "assets/sombrero2.png"
+	return "assets/sombrero.png"
 	}
 	
 	method azar(){

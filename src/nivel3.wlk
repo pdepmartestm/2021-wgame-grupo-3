@@ -38,7 +38,7 @@ object confirmButton inherits Element(position = game.at(8,6),description = "Un 
 	var hints = false
 	override method interact(){
 		
-		if(not(hints)) {game.onTick(1000,"HintGiver",{secuences.hint()});hints = true}
+		if(not(hints)) {game.onTick(2000,"HintGiver",{secuences.hint()});hints = true}
 		self.validate()
 	}
 	
