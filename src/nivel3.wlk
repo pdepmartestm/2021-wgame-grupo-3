@@ -2,7 +2,6 @@ import wollok.game.*
 import player.*
 import Escenario.*
 import juego.*
-import sombrero.*
 
 class Button inherits Element {
 	const pressedImage 
