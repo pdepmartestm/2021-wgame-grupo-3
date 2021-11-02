@@ -12,8 +12,8 @@
 
 ## Reglas de Juego / Instrucciones
 
-Escapa de este simple juego de escape antes de que se acabe el tiempo!
-Deberas encontrar los objetos que abren la puerta al siguiente nivel e interactuar con ellos
+Escapa de este simple juego antes de que se acabe el tiempo!
+Deberás encontrar los objetos que abren la puerta al siguiente nivel e interactuar con ellos
 en el orden correcto para seguir avanzando.
 
 (Puedes interactuar con los objetos presionando "Espacio")
