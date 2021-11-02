@@ -56,7 +56,7 @@ class Puerta inherits Element {
 			
 			
 			if(player.have(keyPuerta)){
-				//desbloquear siguiente nivel
+				//Desbloquea el siguiente nivel
 				player.inventory().remove(keyPuerta)
 				game.removeVisual(keyPuerta)
 				player.inventory().clear()
